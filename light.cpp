@@ -71,11 +71,11 @@ using namespace std;
 //문제2 바이러스
 
 //방문체크
-bool visited[101] = { false };
-
-int n,m,cnt;
-vector<int> v[101];
-queue<int> q;
+//bool visited[101] = { false };
+//
+//int n,m,cnt;
+//vector<int> v[101];
+//queue<int> q;
 
 //bfs..
 //void bfs(int start) 
@@ -245,38 +245,96 @@ queue<int> q;
 //
 //}
 
-//int n, k;
-//int map[101][101];
-//using namespace std;
-//queue<pair<int, int>>q;
-//vector<pair<int, char>> vecinfo;
-//
-//int dx[] = { 0,0,1,-1 };
-//int dy[] = { 1,-1,0,0 };
-//
-//int solve() {
-//	int x = 1, y = 1;
-//	map[x][y] = 2;
-//	int time = 0;
-//	q.push({ x,y });
-//	//예외처리
-//
-//	int nx = x + dx[인덱스];
-//	int ny = y + dy[인덱스];
-//
-//	return time;
-//}
-//
-//int main() {
-//
-//	cin >> n;
-//	cin >> k;
-//
-//	for (int i = 0; i < k; i++) {
-//		int a, b;
-//		cin >> a >> b;
-//		map[a][b] = 1;
-//	}
-//	
-//
-//}
+int n, k;
+int map[101][101];
+using namespace std;
+queue<pair<int, int>>q;
+vector<pair<int, char>> vecinfo;
+
+
+//동(0), 남(1), 서(2), 북(3)
+int dx[] = { 0,1,0,-1 };
+int dy[] = { 1,0,-1,0 };
+
+int solve() {
+	int x = 1, y = 1;
+	map[x][y] = 2;
+	int time = 0;
+	int dir = 0; // 처음에는 동쪽
+	int turninfo = 0;//다음에 회전시킬 정보
+	//0: 오른쪽
+	q.push({ x,y });
+	//예외처리
+
+
+
+
+	while (true) {
+		int nx = x + dx[dir];
+		int ny = y + dy[dir];
+		//뱀의 좌표 업데이트
+		if (1 <= nx && nx <= n && 1 <= ny && ny <= n && map[nx][ny] != 2) {
+			//1.사과가 있는 경우
+			if (map[nx][ny] == 1) {
+				map[nx][ny] = 2;
+				q.push({ nx,ny });
+			}
+			//2.사과가 없는 경우(빈공간인 경우)
+			//지워줘야 한다.
+			if (map[nx][ny] == 0) {
+
+				map[nx][ny] = 2;
+
+				int pastx = q.front().first;
+				int pasty = q.front().second;
+				q.pop();
+				map[pastx][pasty] = 0;
+				q.push({ nx,ny });
+			}
+		}
+		else//자기 자신과 부딪히거나 벽과 부딪힘
+		{
+			time++;
+			break;
+		}
+		time++;
+		x = nx;
+		y = ny;
+		//방향 바꾸기
+		//언제 바꿀건지
+
+		if (turninfo<k&&time == vecinfo[turninfo].first) {
+			//왼쪽
+			if (vecinfo[turninfo].second == 'L')
+			{
+				//마이너스를 써서 구한 식
+				//dir = (dir == 3) ? 3 : dir - 1;
+				dir = (dir + 3) % 4;
+
+			}
+			//오른쪽
+			else
+			{
+				dir = (dir + 1) % 4;
+				turninfo++;
+			}
+		}
+
+	}
+
+	return time;
+}
+
+int main() {
+
+	cin >> n;
+	cin >> k;
+
+	for (int i = 0; i < k; i++) {
+		int a, b;
+		cin >> a >> b;
+		map[a][b] = 1;
+	}
+	
+
+}
