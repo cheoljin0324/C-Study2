@@ -70,14 +70,14 @@ using namespace std;
 
 //문제2 바이러스
 
-////방문체크
-//bool visited[101] = { false };
-//
-//int n,m,cnt;
-//vector<int> v[101];
-//queue<int> q;
-//
-////bfs..
+//방문체크
+bool visited[101] = { false };
+
+int n,m,cnt;
+vector<int> v[101];
+queue<int> q;
+
+//bfs..
 //void bfs(int start) 
 //{
 //	q.push(start);
@@ -245,38 +245,38 @@ using namespace std;
 //
 //}
 
-int n, k;
-int map[101][101];
-using namespace std;
-queue<pair<int, int>>q;
-vector<pair<int, char>> vecinfo;
-
-int dx[] = { 0,0,1,-1 };
-int dy[] = { 1,-1,0,0 };
-
-int solve() {
-	int x = 1, y = 1;
-	map[x][y] = 2;
-	int time = 0;
-	q.push({ x,y });
-	//예외처리
-
-	int nx = x + dx[인덱스];
-	int ny = y + dy[인덱스];
-
-	return time;
-}
-
-int main() {
-
-	cin >> n;
-	cin >> k;
-
-	for (int i = 0; i < k; i++) {
-		int a, b;
-		cin >> a >> b;
-		map[a][b] = 1;
-	}
-	
-
-}
+//int n, k;
+//int map[101][101];
+//using namespace std;
+//queue<pair<int, int>>q;
+//vector<pair<int, char>> vecinfo;
+//
+//int dx[] = { 0,0,1,-1 };
+//int dy[] = { 1,-1,0,0 };
+//
+//int solve() {
+//	int x = 1, y = 1;
+//	map[x][y] = 2;
+//	int time = 0;
+//	q.push({ x,y });
+//	//예외처리
+//
+//	int nx = x + dx[인덱스];
+//	int ny = y + dy[인덱스];
+//
+//	return time;
+//}
+//
+//int main() {
+//
+//	cin >> n;
+//	cin >> k;
+//
+//	for (int i = 0; i < k; i++) {
+//		int a, b;
+//		cin >> a >> b;
+//		map[a][b] = 1;
+//	}
+//	
+//
+//}
