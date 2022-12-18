@@ -1,46 +1,33 @@
 #include<iostream>
 using namespace std;
 
-int n=0,m;
+int n = 0, m;
 int arr[3] = { 0 };
 
-int main() {
-
+int main() 
+{
 	cin >> m;
-	if (m > 50) {
-		return 0;
-	}
+
 	arr[0] = 1;
-
-
 	for (int i = 0; i < m; i++) {
-		int tmp,arr1,arr2;
+		int tmp, arr1, arr2;
 		cin >> arr1 >> arr2;
 
-		tmp = arr[arr1-1];
-		arr[arr1-1] = arr[arr2-1];
-		arr[arr2-1] = tmp;
-		
-		if (arr1 > 3||arr1==0) {
-			n = -1;
-		}
-
-		else if (arr2 > 3||arr2==0) {
-			n = -1;
-		}
-
-		if (n != -1) {
-			if (arr[arr1 - 1] == 1) {
-				n = arr1;
-			}
-			else if (arr[arr2 - 1] == 1) {
-				n = arr2;
-			}
-		}
-
+		tmp = arr[arr1 - 1];
+		arr[arr1 - 1] = arr[arr2 - 1];
+		arr[arr2 - 1] = tmp;
 	}
+	//	if (arr[arr1 - 1] == 1) {
+	//		n = arr1;
+	//	}
+	//	else if (arr[arr2 - 1] == 1) {
+	//		n = arr2;
+	//	}
+	//}
 
-	cout << n;
-
+	for (int i = 0; i < 3; i++)
+	{
+		if (arr[i] == 1) cout << i;
+	}
 
 }
